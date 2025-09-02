@@ -23,7 +23,7 @@ export default function Chat() {
       } else {
         setMessages(prev => [...prev, { from: 'bot', text: `Error: ${data.error || 'Unknown'}` }]);
       }
-    } catch {
+    } catch (e) {
       setMessages(prev => [...prev, { from: 'bot', text: 'Network error' }]);
     } finally {
       setLoading(false);
@@ -33,7 +33,7 @@ export default function Chat() {
   return (
     <div style={{ maxWidth: 800, margin: '0 auto', padding: 20 }}>
       <h1>Resume Rocket — Assistant</h1>
-      <div style={{ border: '1px solid #ddd', padding: 12, minHeight: 200 }}>
+      <div style={{ border: '1px solid #ddd', padding: 12, minHeight: 200, overflowY: 'auto' }}>
         {messages.map((m, i) => (
           <div key={i} style={{ textAlign: m.from === 'user' ? 'right' : 'left', margin: '8px 0' }}>
             <div style={{ display: 'inline-block', background: m.from === 'user' ? '#DCF8C6' : '#F1F0F0', padding: 8, borderRadius: 8 }}>
